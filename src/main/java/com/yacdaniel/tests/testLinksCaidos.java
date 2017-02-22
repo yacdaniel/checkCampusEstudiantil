@@ -42,7 +42,7 @@ public class testLinksCaidos extends SeleniumBase {
                     linksFallados.add(url);
                 }
                 else {
-                    System.out.println(linksBuenos);
+                    System.out.println(url);
                     linksBuenos.add(url);
                 }
                 if(!dominiosDescargas.contains(host)){
