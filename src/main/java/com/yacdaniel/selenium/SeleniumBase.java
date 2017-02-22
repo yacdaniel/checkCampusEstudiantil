@@ -6,21 +6,21 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 /**
- * Created by Xpc on 30/01/2017.
+ *
  */
 public class SeleniumBase {
 
-    protected WebDriver driver;
+    public static WebDriver navegador;
 
     @BeforeMethod(alwaysRun = true)
     public void beforeTest(){
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        navegador = new ChromeDriver();
+        navegador.manage().window().maximize();
     }
 
     @AfterMethod(alwaysRun = true)
     public void afterTest(){
-        driver.quit();
+        navegador.quit();
     }
 
 
