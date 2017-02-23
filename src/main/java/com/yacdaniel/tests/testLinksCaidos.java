@@ -31,28 +31,32 @@ public class testLinksCaidos extends SeleniumBase {
         List<String> dominiosDescargas = new ArrayList<>();
         Descargas descargas = new Descargas(navegador);
         descargas.abrir();
-        for (int i = 0; i <= descargas.NUMERO_PAGINA_MAXIMO; i++){
+        for (int i = 35; i < descargas.NUMERO_PAGINA_MAXIMO; i++){
             descargas.irPaginaNumero(i);
+	    linksBuenos.add("PAGINA NUMERO: " + i);
             for (int j = 0; j < descargas.NUMERO_MATERIALES_PAGINA; j++) {
                 MaterialIndividual materialIndividual = descargas.clickMaterialNumero(j);
+		String urlMaterial = materialIndividual.url();
                 LinkExterno linkExterno = materialIndividual.irDescargarArchivo();
                 String url = linkExterno.url();
                 String host = new URL(url).getHost();
                 if(linkExterno.titulo().toLowerCase().contains("error")){
-                    linksFallados.add(url);
+                    linksFallados.add(urlMaterial);
                 }
                 else {
                     System.out.println(url);
-                    linksBuenos.add(url);
+                    linksBuenos.add(urlMaterial);
                 }
                 if(!dominiosDescargas.contains(host)){
                     dominiosDescargas.add(host);
                 }
                 linkExterno.devolverPaginaDescargasNumero(i);
+
+        	Files.write(Paths.get("linkFallados.txt"), linksFallados, UTF_8, CREATE, TRUNCATE_EXISTING);
+
+	        Files.write(Paths.get("dominios.txt"), dominiosDescargas, UTF_8, CREATE, TRUNCATE_EXISTING);
+       		Files.write(Paths.get("linkBuenos.txt"), linksBuenos, UTF_8, CREATE, TRUNCATE_EXISTING);
             }
         }
-        Files.write(Paths.get("linkFallados.txt"), linksFallados, UTF_8, CREATE, TRUNCATE_EXISTING);
-        Files.write(Paths.get("dominios.txt"), dominiosDescargas, UTF_8, CREATE, TRUNCATE_EXISTING);
-        Files.write(Paths.get("linkBuenos.txt"), linksBuenos, UTF_8, CREATE, TRUNCATE_EXISTING);
     }
 }
