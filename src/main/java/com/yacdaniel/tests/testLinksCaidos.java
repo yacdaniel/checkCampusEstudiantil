@@ -31,7 +31,7 @@ public class testLinksCaidos extends SeleniumBase {
         List<String> dominiosDescargas = new ArrayList<>();
         Descargas descargas = new Descargas(navegador);
         descargas.abrir();
-        for (int i = 35; i < descargas.NUMERO_PAGINA_MAXIMO; i++){
+        for (int i = 0; i < descargas.NUMERO_PAGINA_MAXIMO; i++){
             descargas.irPaginaNumero(i);
 	    linksBuenos.add("PAGINA NUMERO: " + i);
             for (int j = 0; j < descargas.NUMERO_MATERIALES_PAGINA; j++) {
@@ -45,7 +45,7 @@ public class testLinksCaidos extends SeleniumBase {
                 }
                 else {
                     System.out.println(url);
-                    linksBuenos.add(urlMaterial);
+                    linksBuenos.add(urlMaterial + " " + url);
                 }
                 if(!dominiosDescargas.contains(host)){
                     dominiosDescargas.add(host);
