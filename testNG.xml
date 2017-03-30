@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Check Campus Estudiantil">
-    <test name="Check Campus Estudiantil Links" parallel="false" preserve-order="true" verbose="2">
+    <test name="Check Campus Estudiantil Links" verbose="2">
         <packages>
-            <package name="com.yacdaniel.tests.*"/>
+            <package name="com.yacdaniel.test.*"/>
         </packages>
     </test>
 </suite>
